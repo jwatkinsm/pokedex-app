@@ -91,7 +91,7 @@ const typeColors = {
   dark: "#705848",
   steel: "#B8B8D0",
   dark: "#EE99AC",
-  fairy: "#ffdede"
+  fairy: "#ffc3d0"
 };
 
 function setElementStyles(elements, cssProperty, value) {
