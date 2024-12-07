@@ -1,4 +1,4 @@
-
+const MAX_POKEMONS=1025
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
@@ -7,7 +7,7 @@ const notFoundMessage = document.querySelector("#not-found-message");
 
 let allPokemons = [];
 
-fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
+fetch(`https://pokeapi.co/api/v2/pokemon?limit=1025`)
   .then((response) => response.json())
   .then((data) => {
     allPokemons = data.results;
@@ -16,8 +16,11 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
 
 async function fetchPokemonDataBeforeRedirect(id) {
   try {
-    const [pokemon, pokemonSpecies] = await Promise.all([
+    const [pokemon, generation, pokemonSpecies] = await Promise.all([
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
+        res.json()
+      ),
+      fetch(`https://pokeapi.co/api/v2/generation/${id}`).then((res) =>
         res.json()
       ),
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) =>
@@ -42,7 +45,7 @@ function displayPokemons(pokemon) {
             <p class="caption-fonts">#${pokemonID}</p>
         </div>
         <div class="img-wrap">
-            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
+            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/${pokemonID}.png" alt="${pokemon.name}" />
         </div>
         <div class="name-wrap">
             <p class="body3-fonts">#${pokemon.name}</p>
@@ -52,7 +55,7 @@ function displayPokemons(pokemon) {
     listItem.addEventListener("click", async () => {
       const success = await fetchPokemonDataBeforeRedirect(pokemonID);
       if (success) {
-        window.location.href = `./detail.html?id=${pokemonID}`;
+        window.location.href = `./details/detail.html?id=${pokemonID}`;
       }
     });
 
