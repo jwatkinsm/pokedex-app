@@ -7,7 +7,7 @@ const notFoundMessage = document.querySelector("#not-found-message");
 
 let allPokemons = [];
 
-fetch(`https://pokeapi.co/api/v2/pokemon?limit=1025`)
+fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMONS}`)
   .then((response) => response.json())
   .then((data) => {
     allPokemons = data.results;
@@ -16,13 +16,13 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=1025`)
 
 async function fetchPokemonDataBeforeRedirect(id) {
   try {
-    const [pokemon, generation, pokemonSpecies] = await Promise.all([
+    const [pokemon, pokemonSpecies] = await Promise.all([
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
         res.json()
       ),
-      fetch(`https://pokeapi.co/api/v2/generation/${id}`).then((res) =>
-        res.json()
-      ),
+     // fetch(`https://pokeapi.co/api/v2/generation/${id}`).then((res) =>
+     //   res.json()
+     // ),
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) =>
         res.json()
       ),

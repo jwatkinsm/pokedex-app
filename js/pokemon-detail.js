@@ -48,14 +48,14 @@ async function loadPokemon(id) {
           navigatePokemon(id - 1);
         });
       }
-      if (id !== 1025) {
+      if (id !== 151) {
         rightArrow.addEventListener("click", () => {
           navigatePokemon(id + 1);
         });
 
       }
 
-      window.history.pushState({}, "", `./detail.html?id=${id}`);
+      //window.history.pushState({}, "", `./detail.html?id=${id}`);
     }
 
     return true;
@@ -183,7 +183,7 @@ function displayPokemonDetails(pokemon) {
   document.querySelector("#coughtPokemon").dataset.id = pokemon.id;
 
   const imageElement = document.querySelector(".detail-img-wrapper img");
-  imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+  imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
   imageElement.alt = name;
 
   const typeWrapper = document.querySelector(".power-wrapper");
