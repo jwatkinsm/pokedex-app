@@ -90,7 +90,6 @@ const typeColors = {
   dragon: "#7038F8",
   dark: "#705848",
   steel: "#B8B8D0",
-  dark: "#EE99AC",
   fairy: "#ffc3d0"
 };
 
@@ -254,4 +253,24 @@ function getEnglishFlavorText(pokemonSpecies) {
     }
   }
   return "";
+}
+
+document.getElementById("coughtPokemon").addEventListener("click", setLocalstorage);
+
+
+function getLocalStorage(key){
+    return JSON.parse(localStorage.getItem(key));
+}
+ function setLocalstorage(key, data){
+    localStorage.setItem(currentPokemonId, JSON.stringify(data))
+}
+function pokemonCought(){
+    let coughtMonsters = getLocalStorage("so-cart");
+    //check to see if there was anything there
+    if (!coughtMonsters) {
+        coughtMonsters = [];
+    }
+    // then add the current product to the list
+    coughtMonsters.push(currentPokemonId);
+    setLocalstorage("so-cart", cought);
 }

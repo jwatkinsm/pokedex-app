@@ -1,5 +1,8 @@
+
+
 const MAX_POKEMONS=1025
 const listWrapper = document.querySelector(".list-wrapper");
+const genWrapper= document.querySelector(".gen-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
 const nameFilter = document.querySelector("#name");
@@ -14,15 +17,24 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMONS}`)
     displayPokemons(allPokemons);
   });
 
+  let allGens= [];
+
+  fetch('https://pokeapi.co/api/v2/generation')
+  .then((response) => response.json())
+  .then((data) => {
+    allGens = data.results;
+   displayGens(allGens);
+  });
+
+ 
+
 async function fetchPokemonDataBeforeRedirect(id) {
   try {
     const [pokemon, pokemonSpecies] = await Promise.all([
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
         res.json()
       ),
-     // fetch(`https://pokeapi.co/api/v2/generation/${id}`).then((res) =>
-     //   res.json()
-     // ),
+      
       fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) =>
         res.json()
       ),
@@ -62,6 +74,41 @@ function displayPokemons(pokemon) {
     listWrapper.appendChild(listItem);
   });
 }
+function displayGens(generation) {
+  genWrapper.innerHTML = "";
+
+
+  generation.forEach((generation) => {
+    
+    const genItem = document.createElement("div");
+    genItem.className = "gen-item";
+    genItem.innerHTML = `<div class="number-wrap">
+            <Button class="body3-fonts">${generation.name}</Button>
+        </div>`;   
+
+      genItem.addEventListener("click", async () => {
+        listWrapper.innerHTML = ""; 
+
+       
+        
+          const listItem = document.createElement("div");
+          listItem.className = "list-item";
+          listItem.innerHTML = `
+              <div class="number-wrap">
+                  <p class="caption-fonts">#$</p>
+              </div>
+            
+          `;
+          listWrapper.appendChild(listItem);
+      
+    
+        
+        });
+        genWrapper.appendChild(genItem);
+      });
+    }
+     
+
 
 searchInput.addEventListener("keyup", handleSearch);
 
