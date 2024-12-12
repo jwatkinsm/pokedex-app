@@ -1,6 +1,6 @@
 
 
-const MAX_POKEMONS=1025
+
 const listWrapper = document.querySelector(".list-wrapper");
 const genWrapper= document.querySelector(".gen-wrapper");
 const searchInput = document.querySelector("#search-input");
@@ -8,23 +8,65 @@ const numberFilter = document.querySelector("#number");
 const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector("#not-found-message");
 
-let allPokemons = [];
 
-fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMONS}`)
-  .then((response) => response.json())
-  .then((data) => {
-    allPokemons = data.results;
-    displayPokemons(allPokemons);
-  });
+  const generations = {
+    Gen1: {
+      start: 1,
+      end: 151,
+    },
+    Gen2: {
+      start: 152,
+      end: 251,
+    },
+    Gen3: {
+      start: 252,
+      end: 386,
+    },
+    Gen4: {
+      start: 387,
+      end: 493,
+    },
+    Gen5: {
+      start: 494,
+      end: 649,
+    },
+    Gen6: {
+      start: 650,
+      end: 721,
+    },
+    Gen7: {
+      start: 722,
+      end: 809,
+    },
+    Gen8: {
+      start: 810,
+      end: 905,
+    },
+    
+    Gen9: {
+      start: 906,
+      end: 1025,
+    },
+    AllGen: {
+      start: 1,
+      end: 1025
+    }
+  };
+const allPokemon= [];
 
-  let allGens= [];
+  const fetchPokemons = async (gen) => {
+    const { start, end } = generations[gen];
 
-  fetch('https://pokeapi.co/api/v2/generation')
-  .then((response) => response.json())
-  .then((data) => {
-    allGens = data.results;
-   displayGens(allGens);
-  });
+    for (let i = start; i <= end; i++) {
+      const pokemonName = i.toString();
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+  
+      let res = await fetch(url);
+     let allPokemon = await res.json();
+      //console.log(allPokemon);
+      displayPokemons(allPokemon);
+    }
+  };
 
  
 
@@ -45,19 +87,19 @@ async function fetchPokemonDataBeforeRedirect(id) {
   }
 }
 
-function displayPokemons(pokemon) {
-  listWrapper.innerHTML = "";
 
-  pokemon.forEach((pokemon) => {
-    const pokemonID = pokemon.url.split("/")[6];
+
+const displayPokemons = (pokemon) => {
+  //listWrapper.innerHTML = "";
+
     const listItem = document.createElement("div");
     listItem.className = "list-item";
     listItem.innerHTML = `
         <div class="number-wrap">
-            <p class="caption-fonts">#${pokemonID}</p>
+            <p class="caption-fonts">#${pokemon.id}</p>
         </div>
         <div class="img-wrap">
-            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/${pokemonID}.png" alt="${pokemon.name}" />
+            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/${pokemon.id}.png" alt="${pokemon.name}" />
         </div>
         <div class="name-wrap">
             <p class="body3-fonts">#${pokemon.name}</p>
@@ -65,48 +107,32 @@ function displayPokemons(pokemon) {
     `;
 
     listItem.addEventListener("click", async () => {
-      const success = await fetchPokemonDataBeforeRedirect(pokemonID);
+      const success = await fetchPokemonDataBeforeRedirect(pokemon.id);
       if (success) {
-        window.location.href = `./details/detail.html?id=${pokemonID}`;
+        window.location.href = `./details/detail.html?id=${pokemon.id}`;
       }
     });
 
     listWrapper.appendChild(listItem);
-  });
+  
 }
-function displayGens(generation) {
-  genWrapper.innerHTML = "";
 
-
-  generation.forEach((generation) => {
-    
-    const genItem = document.createElement("div");
-    genItem.className = "gen-item";
-    genItem.innerHTML = `<div class="number-wrap">
-            <Button class="body3-fonts">${generation.name}</Button>
-        </div>`;   
-
-      genItem.addEventListener("click", async () => {
-        listWrapper.innerHTML = ""; 
-
-       
-        
-          const listItem = document.createElement("div");
-          listItem.className = "list-item";
-          listItem.innerHTML = `
-              <div class="number-wrap">
-                  <p class="caption-fonts">#$</p>
-              </div>
-            
-          `;
-          listWrapper.appendChild(listItem);
-      
-    
-        
-        });
-        genWrapper.appendChild(genItem);
-      });
+const changeGeneration = () => {
+  const genSelect = document.getElementById("genSelect");
+  genSelect.addEventListener("click", (event) => {
+    const selectedGeneration = event.target.getAttribute("data-value");
+    console.log(selectedGeneration);
+    //const activeGen = document.querySelector(".active");
+    if (selectedGeneration) {
+      listWrapper.innerHTML = "";
+      fetchPokemons(selectedGeneration);
+      //activeGen.classList.remove("active");
+      //event.target.classList.add("active");
     }
+  });
+};
+
+fetchPokemons("Gen3");
      
 
 
@@ -117,16 +143,16 @@ function handleSearch() {
   let filteredPokemons;
 
   if (numberFilter.checked) {
-    filteredPokemons = allPokemons.filter((pokemon) => {
-      const pokemonID = pokemon.url.split("/")[6];
+    filteredPokemons = allPokemon.filter((pokemon) => {
+      const pokemonID = pokemon.id;
       return pokemonID.startsWith(searchTerm);
     });
   } else if (nameFilter.checked) {
-    filteredPokemons = allPokemons.filter((pokemon) =>
+    filteredPokemons = allPokemon.filter((pokemon) =>
       pokemon.name.toLowerCase().startsWith(searchTerm)
     );
   } else {
-    filteredPokemons = allPokemons;
+    filteredPokemons = allPokemon;
   }
 
   displayPokemons(filteredPokemons);
@@ -143,6 +169,7 @@ closeButton.addEventListener("click", clearSearch);
 
 function clearSearch() {
   searchInput.value = "";
-  displayPokemons(allPokemons);
+  displayPokemons(allPokemon);
   notFoundMessage.style.display = "none";
 }
+changeGeneration();
