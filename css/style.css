@@ -10,11 +10,11 @@
   --headline-font-size: 24px;
   --body1-font-size: 14px;
   --body2-font-size: 12px;
-  --body3-font-size: 10px;
+  --body3-font-size: 14px;
   --subtitle1-font-size: 14px;
   --subtitle2-font-size: 12px;
   --subtitle3-font-size: 10px;
-  --caption-font-size: 8px;
+  --caption-font-size: 12px;
 
   --headline-line-height: 32px;
   --common-line-height: 16px;
@@ -119,6 +119,29 @@ body {
 
 .logo-wrapper > img {
   margin-right: 16px;
+}
+.gen-wrapper{
+  margin-bottom: 10px;
+}
+.gen-wrapper, .generations{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 4px;
+}
+.genvalue{
+  width: 10%;
+  height: 30px;
+  text-align: center;
+  border-radius: 9px;
+  background-color: var(--identity-primary);
+  color: white;
+  border-color: #e24b64;
+}
+.active{
+  background-color: #0abde9;
+  color: #131f58;
+  box-shadow: var(--drop-shadow-inner);
 }
 
 .search-wrapper,
@@ -277,14 +300,16 @@ body {
 .list-item .name-wrap {
   border-radius: 7px;
   background-color: var(--grayscale-background);
-  padding: 24px 8px 4px 8px;
+  padding: 21px 8px .017px 8px;
   color: var(--grayscale-dark);
-  margin-top: -18px;
+  margin-top: -40px;
+  
 }
 
+
+
 .list-item .img-wrap {
-  width: 72px;
-  height: 72px;
+  width: 86px;
   margin: auto;
 }
 

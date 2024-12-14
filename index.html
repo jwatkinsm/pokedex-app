@@ -19,16 +19,16 @@
           </div>
           <div class="gen-wrapper">
             <div class="generations" id="genSelect">
-              <button data-value="AllGen" class="active regionvalue">All</button>
-              <button data-value="Gen1" class="regionvalue">Gen 1</button>
-              <button data-value="Gen2" class="regionvalue">Gen 2</button>
-              <button data-value="Gen3" class="regionvalue">Gen 3</button>
-              <button data-value="Gen4" class="regionvalue">Gen 4</button>
-              <button data-value="Gen5" class="regionvalue">Gen 5</button>
-              <button data-value="Gen6" class="regionvalue">Gen 6</button>
-              <button data-value="Gen7" class="regionvalue">Gen 7</button>
-              <button data-value="Gen8" class="regionvalue">Gen 8</button>
-              <button data-value="Gen9" class="regionvalue">Gen 9</button>
+              <button data-value="AllGen" class="active genvalue">All</button>
+              <button data-value="Gen1" class="genvalue">Gen 1</button>
+              <button data-value="Gen2" class="genvalue">Gen 2</button>
+              <button data-value="Gen3" class="genvalue">Gen 3</button>
+              <button data-value="Gen4" class="genvalue">Gen 4</button>
+              <button data-value="Gen5" class="genvalue">Gen 5</button>
+              <button data-value="Gen6" class="genvalue">Gen 6</button>
+              <button data-value="Gen7" class="genvalue">Gen 7</button>
+              <button data-value="Gen8" class="genvalue">Gen 8</button>
+              <button data-value="Gen9" class="genvalue">Gen 9</button>
             </div>
           </div>
           <div class="search-wrapper">
@@ -40,6 +40,7 @@
               />
               <input
                 type="text"
+                onkeyup="handleSearch()"
                 class="search-input body3-fonts"
                 placeholder="Search"
                 id="search-input"

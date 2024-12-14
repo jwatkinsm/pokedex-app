@@ -122,21 +122,21 @@ const changeGeneration = () => {
   genSelect.addEventListener("click", (event) => {
     const selectedGeneration = event.target.getAttribute("data-value");
     console.log(selectedGeneration);
-    //const activeGen = document.querySelector(".active");
+    const activeGen = document.querySelector(".active");
     if (selectedGeneration) {
       listWrapper.innerHTML = "";
       fetchPokemons(selectedGeneration);
-      //activeGen.classList.remove("active");
-      //event.target.classList.add("active");
+      activeGen.classList.remove("active");
+      event.target.classList.add("active");
     }
   });
 };
 
-fetchPokemons("Gen3");
+fetchPokemons("AllGen");
      
 
 
-searchInput.addEventListener("keyup", handleSearch);
+//searchInput.addEventListener("keyup", handleSearch);
 
 function handleSearch() {
   const searchTerm = searchInput.value.toLowerCase();
@@ -144,7 +144,7 @@ function handleSearch() {
 
   if (numberFilter.checked) {
     filteredPokemons = allPokemon.filter((pokemon) => {
-      const pokemonID = pokemon.id;
+      const pokemonID = pokemon.url.split("/")[6];
       return pokemonID.startsWith(searchTerm);
     });
   } else if (nameFilter.checked) {
