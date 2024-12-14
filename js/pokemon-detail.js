@@ -262,7 +262,7 @@ function getLocalStorage(key){
     return JSON.parse(localStorage.getItem(key));
 }
  function setLocalstorage(key, data){
-    localStorage.setItem(currentPokemonId, JSON.stringify(data))
+    localStorage.setItem(loadPokemon(key), JSON.stringify(data))
 }
 function pokemonCought(){
     let coughtMonsters = getLocalStorage("so-cart") || [];

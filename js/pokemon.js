@@ -91,11 +91,18 @@ async function fetchPokemonDataBeforeRedirect(id) {
 
 const displayPokemons = (pokemon) => {
   //listWrapper.innerHTML = "";
-
+  const pokecontainer= document.createElement("div");
+  pokecontainer.className= "poke";
+  pokecontainer.innerHTML= `
+  <img src="./css/assets/pokeball.svg" alt="pokeball" class="ball" data-value= "${pokemon.id}" />
+  `;
+  listWrapper.appendChild(pokecontainer);
+  
     const listItem = document.createElement("div");
     listItem.className = "list-item";
     listItem.innerHTML = `
         <div class="number-wrap">
+        
             <p class="caption-fonts">#${pokemon.id}</p>
         </div>
         <div class="img-wrap">
@@ -113,7 +120,7 @@ const displayPokemons = (pokemon) => {
       }
     });
 
-    listWrapper.appendChild(listItem);
+    pokecontainer.appendChild(listItem);
   
 }
 
@@ -143,16 +150,16 @@ function handleSearch() {
   let filteredPokemons;
 
   if (numberFilter.checked) {
-    filteredPokemons = allPokemon.filter((pokemon) => {
+    filteredPokemons = fetchPokemons(selectedGeneration).filter((pokemon) => {
       const pokemonID = pokemon.url.split("/")[6];
       return pokemonID.startsWith(searchTerm);
     });
   } else if (nameFilter.checked) {
-    filteredPokemons = allPokemon.filter((pokemon) =>
+    filteredPokemons = fetchPokemons(selectedGeneration).filter((pokemon) =>
       pokemon.name.toLowerCase().startsWith(searchTerm)
     );
   } else {
-    filteredPokemons = allPokemon;
+    filteredPokemons = fetchPokemons(selectedGeneration);
   }
 
   displayPokemons(filteredPokemons);

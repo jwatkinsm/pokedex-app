@@ -9,7 +9,7 @@
 
   --headline-font-size: 24px;
   --body1-font-size: 14px;
-  --body2-font-size: 12px;
+  --body2-font-size: 14px;
   --body3-font-size: 14px;
   --subtitle1-font-size: 14px;
   --subtitle2-font-size: 12px;
@@ -277,6 +277,13 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+.poke{
+  display: flex;
+}
+
+.ball{
+  transform: translate(35px, -50px)
 }
 
 .list-item {
