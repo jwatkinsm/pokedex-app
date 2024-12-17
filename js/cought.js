@@ -1,13 +1,13 @@
 
-    document.getElementById("coughtPokemon").addEventListener("click", pokemonCought);
+//    document.getElementById("coughtPokemon").addEventListener("click", pokemonCought);
 
 
-function getLocalStorage(key){
-    return JSON.parse(localStorage.getItem(key));
-}
- function setLocalstorage(key, data){
-    localStorage.setItem(key, JSON.stringify(data))
-}
+//function getLocalStorage(key){
+//    return JSON.parse(localStorage.getItem(key));
+//}
+ //function setLocalstorage(key, data){
+ //   localStorage.setItem(key, JSON.stringify(data))
+//}
 function pokemonCought(){
     let coughtMonsters = getLocalStorage("so-cart");
     //check to see if there was anything there

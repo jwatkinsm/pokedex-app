@@ -255,7 +255,7 @@ function getEnglishFlavorText(pokemonSpecies) {
   return "";
 }
 
-document.getElementById("coughtPokemon").addEventListener("click", setLocalstorage);
+document.getElementById("coughtPokemon").addEventListener("click", pokemonCought);
 
 
 function getLocalStorage(key){

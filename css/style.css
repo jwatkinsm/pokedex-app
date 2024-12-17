@@ -325,6 +325,19 @@ body {
   height: 100%;
 }
 
+.animate{
+  animation:pokeball 0.25s;
+}
+@keyframes pokeball{
+  0%{
+  }
+  50%{
+    transform: scale(1.1) rotate(720deg) color(#dc0a2d);
+  }
+  100%{
+  }
+}
+
 /* detail page */
 
 .detail-main .header {

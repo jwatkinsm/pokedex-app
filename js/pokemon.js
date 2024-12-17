@@ -94,7 +94,7 @@ const displayPokemons = (pokemon) => {
   const pokecontainer= document.createElement("div");
   pokecontainer.className= "poke";
   pokecontainer.innerHTML= `
-  <img src="./css/assets/pokeball.svg" alt="pokeball" class="ball" data-value= "${pokemon.id}" />
+  <img src="./css/assets/pokeball-1.svg" alt="pokeball" class="ball" data-value= "${pokemon.id}" />
   `;
   listWrapper.appendChild(pokecontainer);
   
@@ -178,5 +178,14 @@ function clearSearch() {
   searchInput.value = "";
   displayPokemons(allPokemon);
   notFoundMessage.style.display = "none";
+}
+
+function startBallAnimation() {
+  const cart = document.querySelector('.ball');
+  cart.classList.add('animate');
+}
+function stopBallAnimation() {
+  const cart = document.querySelector('.ball');
+  cart.classList.remove('animate');
 }
 changeGeneration();
