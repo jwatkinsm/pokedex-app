@@ -182,14 +182,19 @@ function handleSearch(pokemon) {
   let x = document.getElementsByClassName("poke");
 
   for (i = 0; i < x.length; i++) {
-    // checking  the name or type entered by user from search box if doesn't match than dont display the message
+    
     if (!x[i].innerHTML.toLowerCase().includes(searchTerm)) {
       x[i].style.display = "none";
     }
-    // checking  the name or type entered by user from search box if doesn't match than dont display the pokemon card
+   
     else {
       x[i].style.display = "block";
     }
+  }
+  if(x.length === 0){
+    notFoundMessage.style.display="block";
+  }else{
+    notFoundMessage.style.display= "none";
   }
 }
 

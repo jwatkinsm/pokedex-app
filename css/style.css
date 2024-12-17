@@ -281,28 +281,34 @@ body {
 .poke{
   display: flex;
   height:8.85rem;
+  width: 8.85rem;
 }
 
 .ball{
+  position: relative;
   z-index:1;
   margin-top: 6px;
 margin-right: -30px;
+margin-left: 6px;
+margin-Bottom: -46px;
   fill: #e0e0e0;
 }
 
 .list-item {
+  position:relative;
   border-radius: 8px;
   box-shadow: var(--drop-shadow);
   background-color: var(--grayscale-white);
   width: 8.85rem;
   height: 8.85rem;
-  margin-top: auto;
+  
   text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
 
 .list-item .number-wrap {
+  position: relative;
   min-height: 16px;
   text-align: right;
   padding: 0 8px;
@@ -312,9 +318,10 @@ margin-right: -30px;
 .list-item .name-wrap {
   border-radius: 7px;
   background-color: var(--grayscale-background);
-  padding: 21px 8px .017px 8px;
+  padding: 15px 8px 5px 8px;
   color: var(--grayscale-dark);
   margin-top: -40px;
+  margin-bottom: 2px;
   
 }
 
