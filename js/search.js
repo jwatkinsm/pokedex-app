@@ -1,6 +1,6 @@
 const inputElement = document.querySelector("#search-input");
 const search_icon = document.querySelector("#search-close-icon");
-const sort_wrapper = document.querySelector(".sort-wrapper");
+//const sort_wrapper = document.querySelector(".sort-wrapper");
 
 inputElement.addEventListener("input", () => {
   handleInputChange(inputElement);
@@ -29,9 +29,9 @@ function handleSearchCloseOnClick() {
     .classList.remove("search-close-icon-visible");
 }
 
-function handleSortIconOnClick() {
-  document
-    .querySelector(".filter-wrapper")
-    .classList.toggle("filter-wrapper-open");
-  document.querySelector("body").classList.toggle("filter-wrapper-overlay");
-}
+//function handleSortIconOnClick() {
+ // document
+ //   .querySelector(".filter-wrapper")
+ //   .classList.toggle("filter-wrapper-open");
+  //document.querySelector("body").classList.toggle("filter-wrapper-overlay");
+//}

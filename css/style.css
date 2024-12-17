@@ -280,10 +280,14 @@ body {
 }
 .poke{
   display: flex;
+  height:8.85rem;
 }
 
 .ball{
-  transform: translate(35px, -50px)
+  z-index:1;
+  margin-top: 6px;
+margin-right: -30px;
+  fill: #e0e0e0;
 }
 
 .list-item {
@@ -292,6 +296,7 @@ body {
   background-color: var(--grayscale-white);
   width: 8.85rem;
   height: 8.85rem;
+  margin-top: auto;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -325,16 +330,18 @@ body {
   height: 100%;
 }
 
-.animate{
-  animation:pokeball 0.25s;
+.catch{
+  animation:pokeball 1.25s;
+  fill: #dc0a2d;
 }
 @keyframes pokeball{
   0%{
   }
   50%{
-    transform: scale(1.1) rotate(720deg) color(#dc0a2d);
+    transform: rotate(720deg);
   }
   100%{
+    fill: #dc0a2d;
   }
 }
 
