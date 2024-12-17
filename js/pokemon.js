@@ -178,7 +178,8 @@ fetchPokemons("AllGen");
 //searchInput.addEventListener("keyup", handleSearch);
 
 function handleSearch(pokemon) {
-  const searchTerm = searchInput.value.toLowerCase();
+  let searchTerm = searchInput.value.toLowerCase();
+  searchTerm = searchTerm.replace(/\s+/g, ""); 
   let x = document.getElementsByClassName("poke");
 
   for (i = 0; i < x.length; i++) {
